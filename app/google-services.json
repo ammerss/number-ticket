@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "158316799319",
+    "firebase_url": "https://qr-numbers.firebaseio.com",
+    "project_id": "qr-numbers",
+    "storage_bucket": "qr-numbers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158316799319:android:1c211414aff775f4028a12",
+        "android_client_info": {
+          "package_name": "com.example.yoons.mobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158316799319-5p6im0cpp1gu17ugfne9id155981cqj1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtO3hs0gVOWvVZSqi-J8DHB4Rgcnz8ns4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158316799319-5p6im0cpp1gu17ugfne9id155981cqj1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
