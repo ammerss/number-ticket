@@ -42,6 +42,8 @@ public class CreateQR extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     List<Object> Array = new ArrayList<Object>();
 
+    final ArrayList<String> keyList = new ArrayList<>();
+    final ArrayList<String> items = new ArrayList<>();
 
 
     @Override
@@ -50,7 +52,7 @@ public class CreateQR extends AppCompatActivity {
         setContentView(R.layout.create_qr);
         iv = (ImageView) findViewById(R.id.qrcode);
         Intent intent = getIntent();
-        String ID = intent.getExtras().getString("giverID");
+        final String ID = intent.getExtras().getString("giverID");
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
             BitMatrix bitMatrix = multiFormatWriter.encode(ID, BarcodeFormat.QR_CODE, 200, 200);
@@ -61,18 +63,6 @@ public class CreateQR extends AppCompatActivity {
         }
 
         listView = (ListView) findViewById(R.id.listviewmsg);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?>adapter,View v, int position,long id){
-                DataSnapshot item = (DataSnapshot)adapter.getItemAtPosition(position);
-                Log.d("ITEMNAME!!!",item.toString());
-                itemname=item.toString();
-                //Intent intent = new Intent(Activity.this,CreateQR.class);
-                //based on item add info to intent
-                //startActivity(intent);
-            }
-        });
-
         initDatabase();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, new ArrayList<String>());
         listView.setAdapter(adapter);
@@ -96,14 +86,24 @@ public class CreateQR extends AppCompatActivity {
 
             }
         });
-
-        //Query applesQuery = mReference.child(ID).orderByChild("title").equalTo("Apple");
-        Query applesQuery = mReference.child(ID).equalTo(itemname);
-        applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+        final DatabaseReference MyRef = FirebaseDatabase.getInstance().getReference().getRoot();
+        final Query applesQuery = mReference.child(ID).equalTo(itemname);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?>adapter,View v, int position,long id){
+                String item = (String)adapter.getItemAtPosition(position);
+                Log.d("ITEMNAME!!!",item.toString());
+                itemname=item;
+                MyRef.getRoot().child(ID).child(keyList.get(position)).removeValue();
+                keyList.remove(position);
+            }
+        });
+        MyRef.getRoot().child(ID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
-                    appleSnapshot.getRef().removeValue();
+                    Log.d("whhtwhthtw",appleSnapshot.toString());
+                    keyList.add(appleSnapshot.getKey());
                 }
             }
 
