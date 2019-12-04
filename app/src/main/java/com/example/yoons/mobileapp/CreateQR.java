@@ -3,8 +3,6 @@ package com.example.yoons.mobileapp;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -14,6 +12,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CreateQR extends AppCompatActivity {
     private ImageView iv;

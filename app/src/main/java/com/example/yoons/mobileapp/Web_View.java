@@ -1,17 +1,16 @@
 package com.example.yoons.mobileapp;
 
+
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-import android.view.View;
-import android.webkit.WebViewClient;
-import android.widget.EditText;
-import android.app.Activity;
-import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Web_View extends AppCompatActivity {
     private WebView webView = null;

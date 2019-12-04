@@ -1,9 +1,9 @@
 package com.example.yoons.mobileapp;
 
+
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -11,12 +11,19 @@ import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private IntentIntegrator qrScan;
     private String giver = "";
+    //private DatabaseReference mDatabase;// ...
+    //mDatabase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 giver = input.getText().toString();
+                //root.setValue("giver");
+                root.child("giver").push().setValue("3");
                 Intent intent = new Intent(MainActivity.this, CreateQR.class);
                 intent.putExtra("giverID",giver);
                 startActivity(intent);
@@ -79,4 +88,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),Web_View.class);
         startActivity(intent);
     }
+
+
 }
