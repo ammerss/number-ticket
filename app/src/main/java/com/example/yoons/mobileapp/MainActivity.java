@@ -19,7 +19,6 @@ import com.google.zxing.integration.android.IntentResult;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private IntentIntegrator qrScan;
     private String giver = "";
     //private DatabaseReference mDatabase;// ...
     //mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -63,26 +62,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public void getClicked(View v){
 
-        qrScan = new IntentIntegrator(this);
-        qrScan.setBeepEnabled(false);//바코드 인식시 소리
-        qrScan.setOrientationLocked(false); // default가 세로모드인데 휴대폰 방향에 따라 가로, 세로로 자동 변경됩니다.
-        qrScan.setPrompt("QR 코드를 인식해주세요");
-        qrScan.initiateScan();
+        Intent intent = new Intent(getApplicationContext(),GetNumber.class);
+        startActivity(intent);
 
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null) {
-            if(result.getContents() == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
+
 
     public void webview(View v){
         Intent intent = new Intent(getApplicationContext(),Web_View.class);
