@@ -26,7 +26,7 @@ public class Number extends AppCompatActivity {
 
         Intent intent = getIntent();
         String qr_id = intent.getExtras().getString("qrID");
-        DatabaseReference mReference = FirebaseDatabase.getInstance().getReference("밍");
+        DatabaseReference mReference = FirebaseDatabase.getInstance().getReference(qr_id);
 
         initDatabase();
 
@@ -34,10 +34,12 @@ public class Number extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 total_num= dataSnapshot.getChildrenCount();
-                Log.d("Total CoUNT0",""+total_num);
                 String num=Long.toString(total_num);
-                Log.d("what?",num);
                 TextView textView = (TextView)findViewById(R.id.pretty);
+                if(total_num== 1){
+                    textView.setText("앞에 대기자 없음");
+                }
+                else
                 textView.setText(num+"번");
             }
 

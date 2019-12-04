@@ -21,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Web_View"></activity>
         <activity android:name=".CreateQR"></activity>
         <activity android:name=".GetNumber"></activity>
         <activity android:name=".Number"></activity>

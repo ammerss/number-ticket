@@ -47,7 +47,8 @@ public class GetNumber extends AppCompatActivity {
             if(result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "번호표를 발급받으세요", Toast.LENGTH_LONG).show();
             }
             qr_id=result.getContents().toString();
         } else {
@@ -58,14 +59,17 @@ public class GetNumber extends AppCompatActivity {
     public void sendMsg(View v){
 
         editdt = (EditText) findViewById(R.id.sendmsg);
-        msg = editdt.getText().toString();
-        //root.child(qr_id).push().setValue(msg);
-        root.child("밍").push().setValue(msg);
-
-        Intent intent = new Intent(getApplicationContext(),Number.class);
-        intent.putExtra("qrID",qr_id);
-        startActivity(intent);
-
+        if(editdt ==null){
+            Toast.makeText(this, "발급자 정보를 입력해주세요", Toast.LENGTH_LONG).show();
+        }
+        else {
+            msg = editdt.getText().toString();
+            root.child(qr_id).push().setValue(msg);
+            //root.child("밍").push().setValue(msg);
+            Intent intent = new Intent(getApplicationContext(), Number.class);
+            intent.putExtra("qrID", qr_id);
+            startActivity(intent);
+        }
     }
 
 

@@ -92,7 +92,7 @@ public class CreateQR extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?>adapter,View v, int position,long id){
                 String item = (String)adapter.getItemAtPosition(position);
-                Log.d("ITEMNAME!!!",item.toString());
+                //Log.d("ITEMNAME!!!",item.toString());
                 itemname=item;
                 MyRef.getRoot().child(ID).child(keyList.get(position)).removeValue();
                 keyList.remove(position);
@@ -102,7 +102,7 @@ public class CreateQR extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
-                    Log.d("whhtwhthtw",appleSnapshot.toString());
+                    //Log.d("whhtwhthtw",appleSnapshot.toString());
                     keyList.add(appleSnapshot.getKey());
                 }
             }
